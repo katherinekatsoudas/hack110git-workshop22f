@@ -6,7 +6,9 @@ An API (Application Programming Interface) is a way to send data between compute
 
 ## Setup
 
-Open VSCode and click on **Clone Git Repository**. Then, paste `git clone https://github.com/meghansun322/api-workshop-demo.git`
+Open VSCode and click on **Clone Git Repository...**
+
+Then, paste `git clone https://github.com/meghansun322/api-workshop-demo.git`
 
 <img width="338" alt="Screen Shot 2022-11-16 at 4 00 40 PM" src="https://user-images.githubusercontent.com/69722735/202293238-cdc8207a-2f84-451f-ad15-4c6100507669.png">
 
