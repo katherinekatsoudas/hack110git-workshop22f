@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,  jsonify
+from flask import Flask, render_template, request
 from helpers import todo
 
 # a python library to fetch APIs -- different from request in the flask library
@@ -15,55 +15,19 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/create-todo', methods=["GET", "POST"])
-def create_todo():
-    if request.method == "POST":
-        global todo_list
-        global todo_count
-
-        title: str = request.form['title']
-        description: str = request.form['description']
-        color: str = request.form['color']
-
-        if title == '':
-            return render_template("create-todo.html")
-
-        new_todo: todo = todo(todo_count, title, description, color)
-        todo_list.append(new_todo)
-
-        todo_count += 1
-
-        return render_template("success.html", title=title, description=description, color=color)
-    return render_template("create-todo.html")
+@app.route("/jokes")
+def my_jokes():
+    a_joke: dict[str, str] = get_a_joke()
+    return render_template('jokes.html', setup=a_joke["setup"], punchline=a_joke["punchline"])
 
 
-@app.route('/view-todo-list', methods=["GET", "POST"])
-def view_todo_list():
-    if request.method == "POST" and len(todo_list) > 0:
-        idx: int = int(request.form['check-button'])
-        todo_list[idx].checked = not todo_list[idx].checked
-    return render_template('view-list.html', todo_list=todo_list)
+@app.route("/many-jokes")
+def many_jokes():
+    ten_jokes: list[dict[str, str]] = get_10_jokes()
+    return render_template('many-jokes.html', jokes=ten_jokes)
 
 
-@app.route('/edit-todo<todo_number>', methods=["GET", "POST"])
-def edit_todo(todo_number: str):
-    if request.method == "POST":
-        global todo_list
-
-        title: str = request.form['title']
-        description: str = request.form['description']
-        color: str = request.form['color']
-
-        if title == '':
-            return render_template("edit-todo.html")
-
-        todo_list[int(todo_number)].title = title
-        todo_list[int(todo_number)].description = description
-        todo_list[int(todo_number)].color = color
-
-        return render_template("edit-success.html")
-    return render_template('edit-todo.html', todo=todo_list[int(todo_number)])
-
+# API CALLS
 
 @app.route("/api/joke")
 def get_a_joke() -> dict[str, str]:
@@ -77,14 +41,24 @@ def get_a_joke() -> dict[str, str]:
 
     # Parse JSON to a dict[str, str]
     # be careful of json structure -- sometimes it can be formatted within a list!
-    response = data.json()
+    response: dict[str, str] = data.json()
     return response
 
 
-@app.route("/jokes")
-def my_jokes():
-    a_joke: dict[str, str] = get_a_joke()
-    return render_template('jokes.html', setup=a_joke["setup"], punchline=a_joke["punchline"])
+@app.route("/api/ten_jokes")
+def get_10_jokes() -> list[dict[str, str]]:
+
+    # Joke API endpoint URLs
+    jokes_api_url: str = "https://official-joke-api.appspot.com/random_ten"
+
+    # using the requests library's get function to call the API, store data as a variable
+    # don't worry about the type, Python will take care of this
+    data = requests.get(jokes_api_url)
+
+    # Parse JSON to a dict[str, str]
+    # The response JSON is now a LIST of dictionaries! It's important to know the structure of response JSON!
+    response: list[dict[str, str]] = data.json()
+    return response
 
 
 if __name__ == '__main__':
