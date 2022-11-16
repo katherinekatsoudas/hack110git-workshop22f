@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request,  jsonify
 from helpers import todo
+
+# a python library to fetch APIs -- different from request in the flask library
 import requests
 
 todo_list: list[todo] = []
@@ -63,21 +65,25 @@ def edit_todo(todo_number: str):
     return render_template('edit-todo.html', todo=todo_list[int(todo_number)])
 
 
-@app.route("/api")
-def get_api():
-    # 'Open Notify' API endpoint URLs
+@app.route("/api/joke")
+def get_a_joke() -> dict[str, str]:
+
+    # Joke API endpoint URLs
     jokes_api_url: str = "https://official-joke-api.appspot.com/random_joke"
 
     # using the requests library's get function to call the API, store data as a variable
     # don't worry about the type, Python will take care of this
     data = requests.get(jokes_api_url)
+
+    # Parse JSON to a dict[str, str]
+    # be careful of json structure -- sometimes it can be formatted within a list!
     response = data.json()
-    return response  # converts to a format that Python can use
+    return response
 
 
 @app.route("/jokes")
 def my_jokes():
-    a_joke: dict[str, str] = get_api()
+    a_joke: dict[str, str] = get_a_joke()
     return render_template('jokes.html', setup=a_joke["setup"], punchline=a_joke["punchline"])
 
 
