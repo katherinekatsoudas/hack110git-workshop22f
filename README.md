@@ -36,3 +36,7 @@ We will be using the Offical Joke API: https://github.com/15Dkatz/official_joke_
 **This is what the final product should look like:**
 
 <img width="500" src="https://github.com/meghansun322/api-workshop-demo/blob/jokes-tab/Screen%20Recording%202022-11-16%20at%204.07.50%20PM.gif" />
+
+## Finished Demo
+
+https://github.com/meghansun322/api-workshop-demo/tree/finished-demo
