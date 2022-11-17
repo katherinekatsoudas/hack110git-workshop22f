@@ -87,5 +87,31 @@ def my_jokes():
     return render_template('jokes.html', setup=a_joke["setup"], punchline=a_joke["punchline"])
 
 
+def get_a_def() -> dict[str, str]:
+    # Below lines of code are all from the API documentation: https://developer.oxforddictionaries.com/documentation/getting_started
+    # Follow along with the documentation and create an account to generate a unique app id and key 
+    app_id = "Replace with your id"
+    app_key = "<Replace with your key>"
+
+    language = "en-gb" # sets language to English
+
+    word_id = "example" # change this variable to see different word definitions
+
+    url = "https://od-api.oxforddictionaries.com:443/api/v2/entries/" + language + "/" + word_id.lower()
+    data = requests.get(url, headers={"app_id": app_id, "app_key": app_key})
+    response = data.json()
+    return response
+
+
+@app.route("/definitions")
+def my_definitions():
+    # Right now, we are just returning the plain dictionary
+    # Look at the jokes example we did earlier if you want to experiment with reformatting the data!
+    # Read the Oxford Dictionary API documentation for more information on how to use the API!
+    a_definition: dict[str, str] = get_a_def()
+    return a_definition
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
