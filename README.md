@@ -16,7 +16,7 @@ This is a demo for APIs using Python's requests library. Before we get started, 
 
 Open the terminal in VSCode and run:
 
-`pip install requests` 
+`pip install requests`
 
 If prompted, you should update pip to the latest version, use
 
@@ -29,6 +29,7 @@ Once that's done you can import the requests library into your Python file using
 We will be using the Offical Joke API: https://github.com/15Dkatz/official_joke_api
 
 **Our application will have two tabs that:**
+
 - calls a random single joke using GET https://official-joke-api.appspot.com/random_joke
 - calls for ten random joke using GET https://official-joke-api.appspot.com/random_ten
 
