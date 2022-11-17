@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Intro to Web Dev!</title>
+        <link rel="stylesheet" href="/static/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <!-- navigation bar -->
+        <nav class="navbar navbar-expand">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/"><img class="logo" src="/static/logo.png" alt="logo"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">home</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/jokes">jokes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/many-jokes">many jokes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <a href="/many-jokes">10 More Jokes</a>
+
+            {% for joke in jokes %} 
+                <h3>{{joke["setup"]}}</h3>
+                <p>{{joke["punchline"]}}</p> 
+            {% endfor %}
+            
+        </div>
+
+   
+ 
+    </body>
+</html>
