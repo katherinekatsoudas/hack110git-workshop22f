@@ -24,6 +24,14 @@ If prompted, you should update pip to the latest version, use
 
 Once that's done you can import the requests library into your Python file using import requests.
 
-## What we'll be working on
+## What We'll Be Working On
+
+We will be using the Offical Joke API: https://github.com/15Dkatz/official_joke_api
+
+**Our application will have two tabs that:**
+- calls a random single joke using GET https://official-joke-api.appspot.com/random_joke
+- calls for ten random joke using GET https://official-joke-api.appspot.com/random_ten
+
+**This is what the final product should look like:**
 
 <img width="500" src="https://github.com/meghansun322/api-workshop-demo/blob/jokes-tab/Screen%20Recording%202022-11-16%20at%204.07.50%20PM.gif" />
