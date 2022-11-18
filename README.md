@@ -33,6 +33,10 @@ We will be using the Offical Joke API: https://github.com/15Dkatz/official_joke_
 - calls a random single joke using GET https://official-joke-api.appspot.com/random_joke
 - calls for ten random joke using GET https://official-joke-api.appspot.com/random_ten
 
+**BONUS CHALLENGE:**
+
+- Oxford Dictionaries GET call using App Id & API Key: https://developer.oxforddictionaries.com/documentation
+
 **This is what the final product should look like:**
 
 <img width="500" src="https://github.com/meghansun322/api-workshop-demo/blob/jokes-tab/Screen%20Recording%202022-11-16%20at%204.07.50%20PM.gif" />
