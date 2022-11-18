@@ -40,3 +40,7 @@ We will be using the Offical Joke API: https://github.com/15Dkatz/official_joke_
 ## Finished Demo
 
 https://github.com/meghansun322/api-workshop-demo/tree/finished-demo
+
+## Contributors
+
+Meghan Sun & Bailey DeSouza
