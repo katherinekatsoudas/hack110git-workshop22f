@@ -14,19 +14,19 @@ def index():
 @app.route("/joke")
 def my_jokes():
     # intialize a variable a_joke and call the API function get_a_joke()
-    a_joke: dict[str, str] = ...
+    a_joke: dict[str, str] = get_a_joke()
 
     # Now, we'll render the designated HTML template, 'jokes.html' . Then will the setup and punchline values to the template
     # use the keys "setup" and "punchline" to access the value associated with that key -- this is the informat we want to display!
 
     # Ex: setup=a_joke["setup"]
-    return render_template('joke.html', setup=..., punchline=...)
+    return render_template('joke.html', setup=a_joke["setup"], punchline=a_joke["punchline"])
 
 
 @app.route("/many-jokes")
 def many_jokes():
     # intialize a variable ten_jokes and call the API function get_10_jokes() (TAKE NOTE OF THE TYPE IT RETURNS)
-    ten_jokes: list[dict[str, str]] = ...
+    ten_jokes: list[dict[str, str]] = get_10_jokes()
 
     # Now, we'll render the designated HTML template, 'many-jokes.html' . Then will the setup and punchline values to the template
     # This time, we'll pass in the whole list / ten_jokes variable to the template
@@ -45,12 +45,12 @@ def get_a_joke() -> dict[str, str]:
     # using the requests library's get function to call the API, store data as a variable
     # don't worry about the type, Python will take care of this
 
-    # use request.get() and pass in the API URL variable -- this will fetch a JSON
-    data = ...
+    # use requests.get() and pass in the API URL variable -- this will fetch a JSON
+    data = requests.get(jokes_api_url)
 
     # call .json() on the data variable - this will parse the JSON to a dict[str,str]
     # be careful of json structure -- sometimes it can be formatted within a list!
-    response: dict[str, str] = ...
+    response: dict[str, str] = data.json()
 
     return response
 
@@ -64,12 +64,12 @@ def get_10_jokes() -> list[dict[str, str]]:
     # using the requests library's get function to call the API, store data as a variable
     # don't worry about the type, Python will take care of this
 
-    # use request.get() and pass in the API URL variable -- this will fetch a JSON
-    data = ...
+    # use requests.get() and pass in the API URL variable -- this will fetch a JSON
+    data = requests.get(jokes_api_url)
 
     # # call .json() on the data variable - this will parse the JSON
     # The response JSON is now a LIST of dictionaries! It's important to know the structure of response JSON!
-    response: list[dict[str, str]] = ...
+    response: list[dict[str, str]] = data.json()
 
     return response
 
